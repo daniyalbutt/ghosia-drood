@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use Spatie\Permission\Models\Role;
 use Spatie\Permission\Models\Permission;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\BookController;
+use App\Http\Controllers\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -15,22 +17,18 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/test', function () {
-});
-
 Route::post('git/pull/webhook', function(){
     info(shell_exec('git pull 2>&1'));
 });
 
+Route::get('/', function () {
+    return redirect('/login');
+});
 
-Route::get('/terms-and-conditions',[HomeController::class,'termsConditions']);
-Route::get('/about-us',[HomeController::class,'aboutUs']);
-Route::get('/privacy-policy',[HomeController::class,'privacyPolicy']);
-Route::get('/delete-my-account',[HomeController::class,'deleteMyAccount']);
-Route::post('/verify-details', [HomeController::class, 'verifydetails'])->name('password-verify');
-Route::post('/delete-account', [HomeController::class, 'deleteaccount'])->name('deleteaccount');
-Route::get('/account-deleted',[HomeController::class,'accountDeleted'])->name('account.deleted');
+Auth::routes(['register' => false]);
 
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::group(['middleware' => ['auth']], function() {
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::resource('books', BookController::class);
+    Route::resource('users', UserController::class);
+});
