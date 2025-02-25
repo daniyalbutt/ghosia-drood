@@ -30,3 +30,7 @@ Route::get('/delete-my-account',[HomeController::class,'deleteMyAccount']);
 Route::post('/verify-details', [HomeController::class, 'verifydetails'])->name('password-verify');
 Route::post('/delete-account', [HomeController::class, 'deleteaccount'])->name('deleteaccount');
 Route::get('/account-deleted',[HomeController::class,'accountDeleted'])->name('account.deleted');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
