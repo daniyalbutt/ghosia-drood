@@ -29,6 +29,8 @@ Route::get('/', function () {
 Auth::routes(['register' => false]);
 
 Route::get('/terms-and-conditions',[PageController::class,'termsConditions']);
+Route::get('/about-us',[PageController::class,'aboutUs']);
+Route::get('/privacy-policy',[PageController::class,'privacyPolicy']);
 
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
