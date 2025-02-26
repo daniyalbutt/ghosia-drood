@@ -107,7 +107,7 @@
                             <tr>
                                 <td><a href="javascript: void(0);" class="text-body fw-bold">{{ $value->user->name }}</a> </td>
                                 <td>{{ $value->user->email }}</td>
-                                <td>{{ date('d M, Y - h:i A', strtotime($value->updated_at)) }}</td>
+                                <td>{{ date('d M, Y - g:i:s A', strtotime($value->updated_at)) }}</td>
                                 <td>{{ $value->durood }}</td>
                             </tr>
                             @endforeach
