@@ -27,6 +27,8 @@ Route::get('/', function () {
 
 Auth::routes(['register' => false]);
 
+Route::get('/terms-and-conditions',[PageController::class,'termsConditions']);
+
 Route::group(['middleware' => ['auth']], function() {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::resource('books', BookController::class);
