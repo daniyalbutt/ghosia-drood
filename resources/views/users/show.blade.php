@@ -24,7 +24,7 @@
         <div class="card">
             <div class="card-body">
                 <div class="hstack gap-2 mb-2">
-                    <button class="btn btn-soft-primary w-100">Total Durood: {{ count($data->durood) }}</button>
+                    <button class="btn btn-soft-primary w-100">Total Durood: {{ number_format($data->durood_sum(), 0) }}</button>
                 </div>
                 <div class="table-responsive">
                     <table class="table">
