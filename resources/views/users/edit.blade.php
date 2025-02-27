@@ -151,6 +151,15 @@
                                 <input name="password" type="text" class="form-control" id="formrow-password-input" value="">
                             </div>
                         </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
+                                <label for="formrow-password-input" class="form-label">Status</label>
+                                <select name="status" id="status-" class="form-control">
+                                    <option value="0" {{ $data->status == 0 ? 'selected' : '' }}>Active</option>
+                                    <option value="1" {{ $data->status == 1 ? 'selected' : '' }}>Deactive</option>
+                                </select>
+                            </div>
+                        </div>
                     </div>
 
                     <div class="text-end">

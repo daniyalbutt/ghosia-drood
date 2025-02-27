@@ -87,6 +87,7 @@ class UserController extends Controller
         if(!empty($request->password)){ 
             $data->password = Hash::make($request->password);
         }
+        $data->status = $request->status;
         $data->phone = $request->phone;
         $data->save();
 
