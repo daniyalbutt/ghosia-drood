@@ -53,7 +53,7 @@
                             <td>{{ $value->phone }}</td>
                             <td>{{ $value->profile != null ? $value->profile->city : '' }}</td>
                             <td>{{ $value->profile != null ? $value->profile->country : '' }}</td>
-                            <td>{!! $value->status == 0 ? '<button class="btn btn-primary btn-sm">Active</button>' : '<button class="btn btn-danger btn-sm">Deactive</button>' !!}</td>
+                            <td>{!! $value->status == 1 ? '<button class="btn btn-primary btn-sm">Active</button>' : '<button class="btn btn-danger btn-sm">Deactive</button>' !!}</td>
                             <td>
                                 <div class="d-flex gap-1">
                                     <a class="btn btn-info btn-sm" href="{{ route('users.show',$value->id) }}"><i class="fa fa-eye"></i></a>

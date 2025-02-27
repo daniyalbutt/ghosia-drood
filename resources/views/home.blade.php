@@ -27,7 +27,7 @@
                     <div class="card-body">
                         <div class="d-flex">
                             <div class="flex-grow-1">
-                                <p class="text-muted fw-medium">Total Durood</p>
+                                <p class="text-muted fw-medium">Total Durood - {{ $current_month }}</p>
                                 <h4 class="mb-0">{{ number_format($total_durood, 0) }} </h4>
                             </div>
 
