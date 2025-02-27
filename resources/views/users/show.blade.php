@@ -30,32 +30,20 @@
                     <table class="table">
                         <tbody>
                             <tr>
+                                <th scope="col">ID#</th>
+                                <td scope="col">{{ $data->id_number }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="col">Member Type</th>
+                                <td scope="col">{{ $data->profile != null ? $data->profile->member_type : '' }}</td>
+                            </tr>
+                            <tr>
                                 <th scope="col">Name</th>
                                 <td scope="col">{{ $data->name }}</td>
                             </tr>
                             <tr>
-                                <th scope="row">Email</th>
-                                <td>{{ $data->email }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Phone</th>
-                                <td>{{ $data->phone }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Education</th>
-                                <td>{{ $data->profile != null ? $data->profile->education : '' }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Profession</th>
-                                <td>{{ $data->profile != null ? $data->profile->profession : '' }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">Country</th>
-                                <td>{{ $data->profile != null ? $data->profile->country : '' }}</td>
-                            </tr>
-                            <tr>
-                                <th scope="row">District</th>
-                                <td>{{ $data->profile != null ? $data->profile->district : '' }}</td>
+                                <th scope="col">Father Name</th>
+                                <td scope="col">{{ $data->profile != null ? $data->profile->father_name : '' }}</td>
                             </tr>
                             <tr>
                                 <th scope="row">Date Of Birth</th>
@@ -64,6 +52,46 @@
                             <tr>
                                 <th scope="row">Address</th>
                                 <td>{{ $data->profile != null ? $data->profile->address : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">City</th>
+                                <td>{{ $data->profile != null ? $data->profile->city : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Country</th>
+                                <td>{{ $data->profile != null ? $data->profile->country : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">ID Card#</th>
+                                <td>{{ $data->profile != null ? $data->profile->id_card : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Cell#</th>
+                                <td>{{ $data->phone }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Whatsapp#</th>
+                                <td>{{ $data->profile != null ? $data->profile->whatsapp : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Mureed</th>
+                                <td>{{ $data->profile != null ? $data->profile->mureed  == 0 ? 'NO' : 'YES' : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Silsila</th>
+                                <td>{{ $data->profile != null ? $data->profile->silsila : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Peer SB Name</th>
+                                <td>{{ $data->profile != null ? $data->profile->peer_sb_name : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Astana Location</th>
+                                <td>{{ $data->profile != null ? $data->profile->astana_location : '' }}</td>
+                            </tr>
+                            <tr>
+                                <th scope="row">Email</th>
+                                <td>{{ $data->email }}</td>
                             </tr>
                         </tbody>
                     </table>

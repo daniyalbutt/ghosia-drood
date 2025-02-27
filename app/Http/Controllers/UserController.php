@@ -24,32 +24,38 @@ class UserController extends Controller
 
     public function store(Request $request){
         $this->validate($request, [
+            'id_number' => 'required',
+            'member_type' => 'required',
             'name' => 'required',
             'email' => 'required|email|unique:users,email',
             'password' => 'required',
             'phone' => 'required',
-            'education' => 'required',
-            'profession' => 'required',
             'country' => 'required',
-            'district' => 'required',
             'dob' => 'required',
             'address' => 'required',
         ]);
 
         $data = new User();
         $data->name = $request->name;
+        $data->id_number = $request->id_number;
         $data->email = $request->email;
         $data->password = Hash::make($request->password);
         $data->phone = $request->phone;
         $data->save();
 
         $profile = new Profile();
-        $profile->education = $request->education;
-        $profile->profession = $request->profession;
+        $profile->member_type = $request->member_type;
+        $profile->father_name = $request->father_name;
+        $profile->city = $request->city;
         $profile->country = $request->country;
-        $profile->district = $request->district;
+        $profile->whatsapp = $request->whatsapp;
         $profile->dob = $request->dob;
         $profile->address = $request->address;
+        $profile->mureed = $request->mureed;
+        $profile->silsila = $request->silsila;
+        $profile->peer_sb_name = $request->peer_sb_name;
+        $profile->astana_location = $request->astana_location;
+        $profile->id_card = $request->id_card;
         $profile->user_id = $data->id;
         $profile->save();
 
@@ -63,18 +69,18 @@ class UserController extends Controller
 
     public function update(Request $request, $id){
         $this->validate($request, [
+            'id_number' => 'required',
+            'member_type' => 'required',
             'name' => 'required',
             'email' => 'required|email|unique:users,email,'.$id,
             'phone' => 'required',
-            'education' => 'required',
-            'profession' => 'required',
             'country' => 'required',
-            'district' => 'required',
             'dob' => 'required',
             'address' => 'required',
         ]);
         $data = User::find($id);
         $data->name = $request->name;
+        $data->id_number = $request->id_number;
         $data->email = $request->email;
         if(!empty($request->password)){ 
             $data->password = Hash::make($request->password);
@@ -83,12 +89,18 @@ class UserController extends Controller
         $data->save();
 
         $profile = Profile::where('user_id', $id)->first();
-        $profile->education = $request->education;
-        $profile->profession = $request->profession;
+        $profile->member_type = $request->member_type;
+        $profile->father_name = $request->father_name;
+        $profile->city = $request->city;
         $profile->country = $request->country;
-        $profile->district = $request->district;
+        $profile->whatsapp = $request->whatsapp;
         $profile->dob = $request->dob;
         $profile->address = $request->address;
+        $profile->mureed = $request->mureed;
+        $profile->silsila = $request->silsila;
+        $profile->peer_sb_name = $request->peer_sb_name;
+        $profile->astana_location = $request->astana_location;
+        $profile->id_card = $request->id_card;
         $profile->user_id = $data->id;
         $profile->save();
         return redirect()->back()->with('success', 'User Updated successfully.');

@@ -34,11 +34,11 @@
                 <table id="datatable" class="table table-bordered dt-responsive  nowrap w-100">
                     <thead>
                         <tr>
-                            <th>SNO</th>
+                            <th>ID</th>
                             <th>Name</th>
                             <th>Email</th>
                             <th>Phone</th>
-                            <th>Address</th>
+                            <th>City</th>
                             <th>Country</th>
                             <th>Action</th>
                         </tr>
@@ -46,11 +46,11 @@
                     <tbody>
                         @foreach ($data as $key => $value)
                         <tr>
-                            <td>{{ ++$key }}</td>
+                            <td>{{ $value->id_number }}</td>
                             <td>{{ $value->name }}</td>
                             <td>{{ $value->email }}</td>
                             <td>{{ $value->phone }}</td>
-                            <td>{{ $value->profile != null ? $value->profile->address : '' }}</td>
+                            <td>{{ $value->profile != null ? $value->profile->city : '' }}</td>
                             <td>{{ $value->profile != null ? $value->profile->country : '' }}</td>
                             <td>
                                 <div class="d-flex gap-1">
