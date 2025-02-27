@@ -49,41 +49,41 @@ class AuthController extends Controller
     {
         try {
             $request->validate([
-            'emailorphone' => 'required',
-            'password' => 'required'    
-        ]);
+                'emailorphone' => 'required',
+                'password' => 'required'    
+            ]);
 
-        $identifier = $request->input('emailorphone');
-        $user = User::where('email', $identifier)
-        ->orWhere('phone', $identifier)
-        ->orWhere('name', $identifier)
-        ->first();
+            $identifier = $request->input('emailorphone');
+            $user = User::where('email', $identifier)
+            ->orWhere('phone', $identifier)
+            ->orWhere('name', $identifier)
+            ->first();
 
-        if($user->status == 0){
-            if ($user) {
-                if (\Auth::attempt(['email' => $identifier, 'password' => $request->input('password')]) ||
-                \Auth::attempt(['phone' => $identifier, 'password' => $request->input('password')]) || 
-                \Auth::attempt(['name' => $identifier, 'password' => $request->input('password')])) {
-    
-                Auth::login($user);
-    
-                return $this->sendResponse(new LoginResource(Auth::user()), 'User logged in successfully!');
-                } 
-            else {
-                return $this->sendError('Invalid Name or ID Card Number.');
+            if($user->status == 0){
+                if ($user) {
+                    if (\Auth::attempt(['email' => $identifier, 'password' => $request->input('password')]) ||
+                    \Auth::attempt(['phone' => $identifier, 'password' => $request->input('password')]) || 
+                    \Auth::attempt(['name' => $identifier, 'password' => $request->input('password')])) {
+        
+                    Auth::login($user);
+        
+                    return $this->sendResponse(new LoginResource(Auth::user()), 'User logged in successfully!');
+                    } 
+                else {
+                    return $this->sendError('Invalid Name or ID Card Number.');
+                }
+                } else {
+                    return $this->sendError('The user with this name does not exist.');
+                }
+            }else{
+                return $this->sendError('User account is Deactive');
             }
-            } else {
-                return $this->sendError('The user with this name does not exist.');
-            }
-            } 
-            catch (ValidationException $e) {
-                return $this->sendError('Validation Error', $e->errors());
-            } 
-            catch (\Exception $e) {
-                return $this->sendError($e->getMessage());
-            }
-        }else{
-            return $this->sendError('User account is Deactive');
+        } 
+        catch (ValidationException $e) {
+            return $this->sendError('Validation Error', $e->errors());
+        } 
+        catch (\Exception $e) {
+            return $this->sendError($e->getMessage());
         }
     }
     public function logout(Request $request)
