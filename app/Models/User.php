@@ -55,6 +55,10 @@ class User extends Authenticatable
         return $this->hasMany(Durood::class);
     }
 
+    public function durood_latest(){
+        return $this->hasMany(Durood::class)->orderBy('id', 'desc');
+    }
+
     public function durood_sum()
     {
         return $this->hasMany(Durood::class)->sum('durood');

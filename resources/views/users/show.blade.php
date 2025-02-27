@@ -116,6 +116,44 @@
                     </div>
                 </div>
             </div>
+            <div class="card-body">
+                <form action="{{ route('users.show', $data->id) }}">
+                    <div class="row mb-4">
+                        <div class="col-md-4">
+                            <label for="">Start Date</label>
+                            <input type="date" class="form-control" name="start_date" value="{{ app('request')->input('start_date') }}">
+                        </div>
+                        <div class="col-md-4">
+                            <label for="">End Date</label>
+                            <input type="date" class="form-control" name="end_date" value="{{ app('request')->input('end_date') }}">
+                        </div>
+                        <div class="col-md-4">
+                            <button class="btn btn-primary" style="margin-top: 27px;">Search Result</button>
+                        </div>
+                    </div>
+                </form>
+                <div class="table-responsive">
+                    <table class="table align-middle table-nowrap mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="align-middle">Month</th>
+                                <th class="align-middle">Date</th>
+                                <th class="align-middle">Total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($durood as $key => $value)
+                            <tr>
+                                <td>{{ date('F', strtotime($value->updated_at)) }}</td>
+                                <td>{{ date('d M, Y - g:i:s A', strtotime($value->updated_at)) }}</td>
+                                <td>{{ $value->durood }}</td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <!-- end table-responsive -->
+            </div>
         </div>
     </div><!--end col-->
 </div>

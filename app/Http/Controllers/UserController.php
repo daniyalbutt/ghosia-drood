@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Durood;
 use App\Models\Profile;
 use Hash;
 class UserController extends Controller
@@ -113,9 +114,25 @@ class UserController extends Controller
         return redirect()->back()->with('success', 'User Deleted successfully.');
     }
 
-    public function show($id){
+    public function show($id, Request $request){
+
+        $durood = Durood::whereHas('user', function($q) use ($id){
+            $q->where('user_id', $id);
+        });
+
+        if($request->start_date != null){
+            $start_date = $request->start_date;
+            $durood = $durood->where('created_at', '>=', $start_date);
+        }
+
+        if($request->end_date != null){
+            $end_date = $request->end_date;
+            $durood = $durood->where('created_at', '<=', $end_date);
+        }
+        
+        $durood = $durood->get();
         $data = User::find($id);
-        return view('users.show', compact('data'));
+        return view('users.show', compact('data', 'durood'));
     }
  
 }
