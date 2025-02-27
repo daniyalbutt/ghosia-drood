@@ -14,7 +14,7 @@ class UserController extends Controller
     }
 
     public function index(){
-        $data = User::latest()->where('status', 0)->where('is_admin', 0)->get();
+        $data = User::latest()->where('is_admin', 0)->get();
         return view('users.index',compact('data'));
     }
 
