@@ -42,6 +42,7 @@ class UserController extends Controller
         $data->email = str_replace(' ', '-', strtolower($request->name)) . hexdec(uniqid()).'@domain.com';
         $data->password = Hash::make($request->password);
         $data->phone = $request->phone;
+        $data->status = 0;
         $data->save();
 
         $profile = new Profile();
