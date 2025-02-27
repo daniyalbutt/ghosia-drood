@@ -138,12 +138,12 @@
                                 <input name="astana_location" type="text" class="form-control" id="formrow-astana_location-input">
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <!-- <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-email-input" class="form-label">Email <strong>*</strong></label>
                                 <input name="email" type="email" class="form-control" id="formrow-email-input" required>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-password-input" class="form-label">Password <strong>*</strong></label>

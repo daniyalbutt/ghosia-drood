@@ -97,7 +97,6 @@
                         <thead class="table-light">
                             <tr>
                                 <th class="align-middle">User</th>
-                                <th class="align-middle">Email</th>
                                 <th class="align-middle">Date</th>
                                 <th class="align-middle">Total</th>
                             </tr>
@@ -106,7 +105,6 @@
                             @foreach($data as $key => $value)
                             <tr>
                                 <td><a href="javascript: void(0);" class="text-body fw-bold">{{ $value->user->name }}</a> </td>
-                                <td>{{ $value->user->email }}</td>
                                 <td>{{ date('d M, Y - g:i:s A', strtotime($value->updated_at)) }}</td>
                                 <td>{{ $value->durood }}</td>
                             </tr>

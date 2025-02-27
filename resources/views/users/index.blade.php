@@ -36,8 +36,8 @@
                         <tr>
                             <th>ID</th>
                             <th>Name</th>
-                            <th>Email</th>
                             <th>Phone</th>
+                            <th>ID Card</th>
                             <th>City</th>
                             <th>Country</th>
                             <th>Status</th>
@@ -49,11 +49,11 @@
                         <tr>
                             <td>{{ $value->id_number }}</td>
                             <td>{{ $value->name }}</td>
-                            <td>{{ $value->email }}</td>
                             <td>{{ $value->phone }}</td>
+                            <td>{{ $value->profile != null ? $value->profile->id_card : '' }}</td>
                             <td>{{ $value->profile != null ? $value->profile->city : '' }}</td>
                             <td>{{ $value->profile != null ? $value->profile->country : '' }}</td>
-                            <td>{!! $value->status == 1 ? '<button class="btn btn-primary btn-sm">Active</button>' : '<button class="btn btn-danger btn-sm">Deactive</button>' !!}</td>
+                            <td>{!! $value->status == 0 ? '<button class="btn btn-primary btn-sm">Active</button>' : '<button class="btn btn-danger btn-sm">Deactive</button>' !!}</td>
                             <td>
                                 <div class="d-flex gap-1">
                                     <a class="btn btn-info btn-sm" href="{{ route('users.show',$value->id) }}"><i class="fa fa-eye"></i></a>

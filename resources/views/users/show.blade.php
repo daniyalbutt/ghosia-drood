@@ -89,10 +89,6 @@
                                 <th scope="row">Astana Location</th>
                                 <td>{{ $data->profile != null ? $data->profile->astana_location : '' }}</td>
                             </tr>
-                            <tr>
-                                <th scope="row">Email</th>
-                                <td>{{ $data->email }}</td>
-                            </tr>
                         </tbody>
                     </table>
                 </div>

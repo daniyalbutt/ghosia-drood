@@ -28,7 +28,7 @@ class UserController extends Controller
             'id_number' => 'required',
             'member_type' => 'required',
             'name' => 'required',
-            'email' => 'required|email|unique:users,email',
+            // 'email' => 'required|email|unique:users,email',
             'password' => 'required',
             'phone' => 'required',
             'country' => 'required',
@@ -39,7 +39,7 @@ class UserController extends Controller
         $data = new User();
         $data->name = $request->name;
         $data->id_number = $request->id_number;
-        $data->email = $request->email;
+        $data->email = str_replace(' ', '-', strtolower($request->name)) . hexdec(uniqid()).'@domain.com';
         $data->password = Hash::make($request->password);
         $data->phone = $request->phone;
         $data->save();
@@ -73,7 +73,7 @@ class UserController extends Controller
             'id_number' => 'required',
             'member_type' => 'required',
             'name' => 'required',
-            'email' => 'required|email|unique:users,email,'.$id,
+            // 'email' => 'required|email|unique:users,email,'.$id,
             'phone' => 'required',
             'country' => 'required',
             'dob' => 'required',
@@ -82,7 +82,7 @@ class UserController extends Controller
         $data = User::find($id);
         $data->name = $request->name;
         $data->id_number = $request->id_number;
-        $data->email = $request->email;
+        // $data->email = $request->email;
         if(!empty($request->password)){ 
             $data->password = Hash::make($request->password);
         }
