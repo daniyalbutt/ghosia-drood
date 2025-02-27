@@ -59,27 +59,31 @@ class AuthController extends Controller
         ->orWhere('name', $identifier)
         ->first();
 
-        if ($user) {
-            if (\Auth::attempt(['email' => $identifier, 'password' => $request->input('password')]) ||
-            \Auth::attempt(['phone' => $identifier, 'password' => $request->input('password')]) || 
-            \Auth::attempt(['name' => $identifier, 'password' => $request->input('password')])) {
-
-            Auth::login($user);
-
-            return $this->sendResponse(new LoginResource(Auth::user()), 'User logged in successfully!');
+        if($user->status == 0){
+            if ($user) {
+                if (\Auth::attempt(['email' => $identifier, 'password' => $request->input('password')]) ||
+                \Auth::attempt(['phone' => $identifier, 'password' => $request->input('password')]) || 
+                \Auth::attempt(['name' => $identifier, 'password' => $request->input('password')])) {
+    
+                Auth::login($user);
+    
+                return $this->sendResponse(new LoginResource(Auth::user()), 'User logged in successfully!');
+                } 
+            else {
+                return $this->sendError('Invalid Name or ID Card Number.');
+            }
+            } else {
+                return $this->sendError('The user with this name does not exist.');
+            }
             } 
-        else {
-            return $this->sendError('Invalid Name or ID Card Number.');
-        }
-        } else {
-            return $this->sendError('The user with this name does not exist.');
-        }
-        } 
-        catch (ValidationException $e) {
-            return $this->sendError('Validation Error', $e->errors());
-        } 
-        catch (\Exception $e) {
-            return $this->sendError($e->getMessage());
+            catch (ValidationException $e) {
+                return $this->sendError('Validation Error', $e->errors());
+            } 
+            catch (\Exception $e) {
+                return $this->sendError($e->getMessage());
+            }
+        }else{
+            return $this->sendError('User account is Deactive');
         }
     }
     public function logout(Request $request)
