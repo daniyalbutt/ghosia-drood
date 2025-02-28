@@ -56,7 +56,7 @@ class UserController extends Controller
         $profile->mureed = $request->mureed;
         $profile->silsila = $request->silsila;
         $profile->peer_sb_name = $request->peer_sb_name;
-        $profile->astana_location = $request->astana_location;
+        // $profile->astana_location = $request->astana_location;
         $profile->id_card = $request->id_card;
         $profile->user_id = $data->id;
         $profile->save();
@@ -102,7 +102,7 @@ class UserController extends Controller
         $profile->mureed = $request->mureed;
         $profile->silsila = $request->silsila;
         $profile->peer_sb_name = $request->peer_sb_name;
-        $profile->astana_location = $request->astana_location;
+        // $profile->astana_location = $request->astana_location;
         $profile->id_card = $request->id_card;
         $profile->user_id = $data->id;
         $profile->save();

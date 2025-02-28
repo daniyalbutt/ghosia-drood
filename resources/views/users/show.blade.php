@@ -85,10 +85,10 @@
                                 <th scope="row">Peer SB Name</th>
                                 <td>{{ $data->profile != null ? $data->profile->peer_sb_name : '' }}</td>
                             </tr>
-                            <tr>
+                            <!-- <tr>
                                 <th scope="row">Astana Location</th>
                                 <td>{{ $data->profile != null ? $data->profile->astana_location : '' }}</td>
-                            </tr>
+                            </tr> -->
                         </tbody>
                     </table>
                 </div>

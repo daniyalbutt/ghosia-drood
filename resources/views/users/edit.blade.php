@@ -133,18 +133,18 @@
                                 <input name="peer_sb_name" type="text" class="form-control" id="formrow-peer_sb_name-input" value="{{ old('peer_sb_name', $data->profile != null ? $data->profile->peer_sb_name : '') }}">
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <!-- <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-astana_location-input" class="form-label">Astana Location</label>
                                 <input name="astana_location" type="text" class="form-control" id="formrow-astana_location-input" value="{{ old('astana_location', $data->profile != null ? $data->profile->astana_location : '') }}">
                             </div>
-                        </div>
-                        <div class="col-md-4">
+                        </div> -->
+                        <!-- <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-email-input" class="form-label">Email <strong>*</strong></label>
                                 <input name="email" type="email" class="form-control" id="formrow-email-input" value="{{ old('email', $data->email) }}" required>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-password-input" class="form-label">Password</label>

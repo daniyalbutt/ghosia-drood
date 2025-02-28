@@ -132,12 +132,12 @@
                                 <input name="peer_sb_name" type="text" class="form-control" id="formrow-peer_sb_name-input">
                             </div>
                         </div>
-                        <div class="col-md-4">
+                        <!-- <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-astana_location-input" class="form-label">Astana Location</label>
                                 <input name="astana_location" type="text" class="form-control" id="formrow-astana_location-input">
                             </div>
-                        </div>
+                        </div> -->
                         <!-- <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-email-input" class="form-label">Email <strong>*</strong></label>
