@@ -63,4 +63,8 @@ class User extends Authenticatable
     {
         return $this->hasMany(Durood::class)->sum('durood');
     }
+
+    public function attendance(){
+        return $this->hasMany(Attendance::class)->orderBy('id', 'desc');
+    }
 }

@@ -45,7 +45,11 @@
                             <td>{{ $value['date'] }}</td>
                             <td>{{ $value['day'] }}</td>
                             <td>
-                                <a href="javascript:;" onclick="confirmOpen('{{ $value['key'] }}', {{ $data->id }})"  class="btn btn-primary btn-sm">Check in</a>
+                                @if(in_array($value['key'], $attendance_key))
+                                <a href="javascript:;" class="btn btn-success btn-sm">Checked</a>
+                                @else
+                                <a href="javascript:;" onclick="confirmOpen('{{ $value['key'] }}', '{{ $value['date'] }}', '{{ $value['day'] }}' , '{{ $value['month'] }}', {{ $data->id }})"  class="btn btn-danger btn-sm">Check in</a>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -57,19 +61,23 @@
 </div>
 
 <div id="myModal" class="modal fade" tabindex="-1" aria-labelledby="myModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="myModalLabel">Default Modal Heading</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <h5>Are you Sure?</h5>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
-            </div>
+            <form action="{{ route('attendance.post') }}" method="post" class="attendance-form">
+                @csrf
+                <input type="hidden" name="time_key" class="time_key">
+                <input type="hidden" name="time_date" class="time_date">
+                <input type="hidden" name="time_day" class="time_day">
+                <input type="hidden" name="time_month" class="time_month">
+                <input type="hidden" name="user_id" class="user_id">
+                <div class="modal-header">
+                    <h4 class="modal-title w-100 text-center" id="myModalLabel" style="text-transform: uppercase;font-weight: bold;color: wblak;">Are you Sure?</h4>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-secondary waves-effect" data-bs-dismiss="modal">NO</button>
+                    <button type="submit" class="btn btn-primary waves-effect waves-light">YES</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -77,7 +85,12 @@
 
 @push('scripts')
 <script>
-    function confirmOpen(key, id){
+    function confirmOpen(key, date, day, month, id){
+        $('.attendance-form').find('.time_key').val(key);
+        $('.attendance-form').find('.time_date').val(date);
+        $('.attendance-form').find('.time_day').val(day);
+        $('.attendance-form').find('.time_month').val(month);
+        $('.attendance-form').find('.user_id').val(id);
         $('#myModal').modal('show');
     }
 </script>

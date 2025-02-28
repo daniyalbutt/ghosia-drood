@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\User;
 use App\Models\Durood;
 use App\Models\Profile;
+use App\Models\Attendance;
 use Hash;
 use Carbon\Carbon;
 
@@ -156,7 +157,24 @@ class UserController extends Controller
             $fridays[$index_key]['month'] = $date->format('F');
             $index_key++;
         }
-        return view('users.attendance', compact('data', 'fridays'));
+        $attendance_key = [];
+        $get_attendance = $data->attendance;
+        foreach($get_attendance as $key => $value){
+            $attendance_key[] = $value->time_key;
+        }
+        
+        return view('users.attendance', compact('data', 'fridays', 'attendance_key'));
+    }
+
+    public function attendancePost(Request $request){
+        $data = new Attendance();
+        $data->time_key = $request->time_key;
+        $data->time_date = $request->time_date;
+        $data->time_day = $request->time_day;
+        $data->time_month = $request->time_month;
+        $data->user_id = $request->user_id;
+        $data->save();
+        return redirect()->back()->with('success', 'Check in Successfully');   
     }
  
 }
