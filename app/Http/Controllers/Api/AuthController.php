@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 
-use App\Models\{User, ForgetPassword};
+use App\Models\{User, ForgetPassword, Profile};
 use App\Mail\ForgetPasswordMail;
 use App\Http\Resources\{LoginResource};
 use Illuminate\Validation\ValidationException; 
@@ -21,18 +21,41 @@ class AuthController extends Controller
         try {
             $request->validate([
                 'name' => 'required',
-                'email' => 'required|email|unique:users,email',
+                'father_name' => 'required',
+                'dob' => 'required',
+                'address' => 'required',
+                'city' => 'required',
+                'country' => 'required',
+                'id_card' => 'required',
                 'phone' => 'required',
-                'password' => 'required|confirmed',
-                'password_confirmation'  => 'required'
+                'whatsapp' => 'required',
+                'mureed' => 'required',
+                // 'email' => 'required|email|unique:users,email',
+                // 'password' => 'required|confirmed',
+                // 'password_confirmation'  => 'required'
             ]);
 
             $user = User::create([
                 'name' => $request->input('name'),
-                'email' => $request->input('email'),
+                'email' => str_replace(' ', '-', strtolower($request->input('name'))) . hexdec(uniqid()).'@domain.com',
                 'phone' => $request->input('phone'),
-                'password' => Hash::make($request->input('password'))
+                'password' => Hash::make($request->input('id_card'))
             ]);
+
+            $profile = new Profile();
+            $profile->father_name = $request->father_name;
+            $profile->city = $request->city;
+            $profile->country = $request->country;
+            $profile->whatsapp = $request->whatsapp;
+            $profile->dob = $request->dob;
+            $profile->address = $request->address;
+            $profile->mureed = $request->mureed;
+            $profile->silsila = $request->silsila;
+            // $profile->astana_location = $request->astana_location;
+            $profile->id_card = $request->id_card;
+            $profile->user_id = $user->id;
+            $profile->save();
+
             // $user->assignRole($request->input('role'));
 
             Auth::login($user);

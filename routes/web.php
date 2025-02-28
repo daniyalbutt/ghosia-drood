@@ -36,4 +36,5 @@ Route::group(['middleware' => ['auth']], function() {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::resource('books', BookController::class);
     Route::resource('users', UserController::class);
+    Route::get('user/{id}/attendance/{name}', [UserController::class, 'attendance'])->name('attendance.index');
 });

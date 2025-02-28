@@ -7,6 +7,8 @@ use App\Models\User;
 use App\Models\Durood;
 use App\Models\Profile;
 use Hash;
+use Carbon\Carbon;
+
 class UserController extends Controller
 {
 
@@ -135,6 +137,26 @@ class UserController extends Controller
         $durood = $durood->get();
         $data = User::find($id);
         return view('users.show', compact('data', 'durood'));
+    }
+
+    public function attendance($id, $name){
+        $data = User::find($id);
+        $fridays = [];
+        $month = (new Carbon())->month;
+        $year= (int)Carbon::now()->format('Y');
+        $fromDate = '1-'.$month.'-'.$year;
+        $toDate = '1-'.$month + 1 . '-'.$year;
+        $startDate = Carbon::parse($fromDate)->next(Carbon::FRIDAY);
+        $endDate = Carbon::parse($toDate);
+        $index_key = 0;
+        for ($date = $startDate; $date->lte($endDate); $date->addWeek()) {
+            $fridays[$index_key]['key'] = $date->timestamp;
+            $fridays[$index_key]['date'] = $date->format('d, F Y');
+            $fridays[$index_key]['day'] = $date->format('l');
+            $fridays[$index_key]['month'] = $date->format('F');
+            $index_key++;
+        }
+        return view('users.attendance', compact('data', 'fridays'));
     }
  
 }

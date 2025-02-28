@@ -56,6 +56,7 @@
                             <td>{!! $value->status == 0 ? '<button class="btn btn-primary btn-sm">Active</button>' : '<button class="btn btn-danger btn-sm">Deactive</button>' !!}</td>
                             <td>
                                 <div class="d-flex gap-1">
+                                    <a href="{{ route('attendance.index', ['id' => $value->id, 'name' => str_replace(' ', '-', strtolower($value->name))]) }}" class="btn btn-secondary btn-sm">Attendance</a>
                                     <a class="btn btn-info btn-sm" href="{{ route('users.show',$value->id) }}"><i class="fa fa-eye"></i></a>
                                     <a class="btn btn-warning btn-sm content-icon" href="{{ route('users.edit',$value->id) }}"><i class="fa fa-edit"></i></a>
                                     <form method="post" action="{{ route('users.destroy', $value->id) }}">
