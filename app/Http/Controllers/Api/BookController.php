@@ -12,7 +12,7 @@ class BookController extends Controller
     public function books(Request $request)
     {
         try{
-            $book = Book::all();
+            $book = Book::where('status', 0)->get();
             if($book)
             {
                 return $this->sendResponse(BookResource::collection($book),'Books Fetched Successfully');
