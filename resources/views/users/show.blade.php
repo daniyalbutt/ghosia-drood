@@ -29,6 +29,14 @@
                 <div class="table-responsive">
                     <table class="table">
                         <tbody>
+                            @if($data->profile != null)
+                            @if($data->profile->reference != null)
+                            <tr>
+                                <th scope="col">Reference</th>
+                                <td scope="col">{{ $data->profile->reference }}</td>
+                            </tr>
+                            @endif
+                            @endif
                             <tr>
                                 <th scope="col">ID#</th>
                                 <td scope="col">{{ $data->id_number }}</td>

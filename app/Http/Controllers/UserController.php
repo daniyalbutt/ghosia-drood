@@ -50,6 +50,7 @@ class UserController extends Controller
 
         $profile = new Profile();
         $profile->member_type = $request->member_type;
+        $profile->reference = $request->reference;
         $profile->father_name = $request->father_name;
         $profile->city = $request->city;
         $profile->country = $request->country;
@@ -96,6 +97,7 @@ class UserController extends Controller
 
         $profile = Profile::where('user_id', $id)->first();
         $profile->member_type = $request->member_type;
+        $profile->reference = $request->reference;
         $profile->father_name = $request->father_name;
         $profile->city = $request->city;
         $profile->country = $request->country;

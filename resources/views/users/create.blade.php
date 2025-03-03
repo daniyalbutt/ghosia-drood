@@ -43,6 +43,12 @@
                     <div class="row mb-1">
                         <div class="col-md-4">
                             <div class="mb-3">
+                                <label for="formrow-id-reference-input" class="form-label">Reference</label>
+                                <input name="reference" type="text" class="form-control" id="formrow-id-reference-input">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
                                 <label for="formrow-id-number-input" class="form-label">ID# <strong>*</strong></label>
                                 <input name="id_number" type="text" class="form-control" id="formrow-id-number-input" required>
                             </div>
