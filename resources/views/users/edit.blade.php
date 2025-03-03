@@ -108,7 +108,7 @@
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
-                                <label for="formrow-whatsapp-input" class="form-label">Whatsapp# <strong>*</strong></label>
+                                <label for="formrow-whatsapp-input" class="form-label">Whatsapp#</label>
                                 <input name="whatsapp" type="text" class="form-control" id="formrow-whatsapp-input" value="{{ old('whatsapp', $data->profile != null ? $data->profile->whatsapp : '') }}">
                             </div>
                         </div>
