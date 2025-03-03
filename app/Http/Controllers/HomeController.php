@@ -24,7 +24,7 @@ class HomeController extends Controller
         $total_book = DB::table('books')->where('status', 0)->count();
         $data = Durood::orderBy('updated_at', 'desc')->limit(20)->get();
 
-        $users = User::orderBy('id', 'desc')->get();
+        $users = User::orderBy('id', 'desc')->where('is_admin', 0)->get();
         return view('home', compact('total_durood', 'total_user', 'total_book', 'data', 'current_month', 'users'));
     }
 }
