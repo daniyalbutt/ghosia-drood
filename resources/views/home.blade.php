@@ -140,7 +140,7 @@
                         <tbody>
                             @foreach($data as $key => $value)
                             <tr>
-                                <td><a href="javascript: void(0);" class="text-body fw-bold">{{ $value->user->name }}</a> </td>
+                                <td><a href="javascript: void(0);" class="text-body fw-bold">{{ $value->user != null ? $value->user->name : '' }}</a> </td>
                                 <td>{{ date('d M, Y - g:i:s A', strtotime($value->updated_at)) }}</td>
                                 <td>{{ $value->durood }}</td>
                             </tr>
