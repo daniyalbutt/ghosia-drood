@@ -108,7 +108,7 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-whatsapp-input" class="form-label">Whatsapp# <strong>*</strong></label>
-                                <input name="whatsapp" type="text" class="form-control" id="formrow-whatsapp-input" required>
+                                <input name="whatsapp" type="text" class="form-control" id="formrow-whatsapp-input">
                             </div>
                         </div>
                         <div class="col-md-4">
