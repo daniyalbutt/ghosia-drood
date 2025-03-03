@@ -88,7 +88,41 @@
 <!-- end row -->
 
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-7">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title mb-4">All Durood</h4>
+                <div class="table-responsive">
+                    <table class="table align-middle table-nowrap mb-0" id="home-datatable">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="align-middle">User</th>
+                                <th class="align-middle">Month</th>
+                                <th class="align-middle">Total</th>
+                                <th class="align-middle">Attendance</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach($users as $key => $value)
+                            <tr>
+                                <td>{{ $value->name }}</td>
+                                <td>{{ date('F') }}</td>    
+                                <td>{{ $value->total_durood() }}</td>
+                                <td>
+                                    <a target="_blank" href="{{ route('attendance.index', ['id' => $value->id, 'name' => str_replace(' ', '-', strtolower($value->name))]) }}" class="btn btn-info btn-sm"><i class="fa fa-user-check"></i></a>
+                                    @foreach($value->attendance as $key => $value)
+                                    <button class="btn btn-success btn-sm">{{ $value->time_date }}</button>
+                                    @endforeach
+                                </td>
+                            </tr>
+                            @endforeach
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-5">
         <div class="card">
             <div class="card-body">
                 <h4 class="card-title mb-4">Latest Durood</h4>

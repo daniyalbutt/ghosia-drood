@@ -67,4 +67,9 @@ class User extends Authenticatable
     public function attendance(){
         return $this->hasMany(Attendance::class)->orderBy('id', 'desc');
     }
+
+    public function total_durood(){
+        return $this->hasMany(Durood::class)->whereRaw('MONTH(created_at) = ?',[date('m')])->sum('durood');
+    }
+    
 }

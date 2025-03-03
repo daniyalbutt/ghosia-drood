@@ -51,6 +51,7 @@ class AuthController extends Controller
             $profile->address = $request->address;
             $profile->mureed = $request->mureed;
             $profile->silsila = $request->silsila;
+            $profile->peer_sb_name = $request->peer_sb_name;
             // $profile->astana_location = $request->astana_location;
             $profile->id_card = $request->id_card;
             $profile->user_id = $user->id;
