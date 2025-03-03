@@ -96,6 +96,7 @@
                     <table class="table align-middle table-nowrap mb-0" id="home-datatable">
                         <thead class="table-light">
                             <tr>
+                                <th class="align-middle">ID Number</th>
                                 <th class="align-middle">User</th>
                                 <th class="align-middle">Month</th>
                                 <th class="align-middle">Total</th>
@@ -105,6 +106,7 @@
                         <tbody>
                             @foreach($users as $key => $value)
                             <tr>
+                                <td>{{ $value->id_number }}</td>
                                 <td>{{ $value->name }}</td>
                                 <td>{{ date('F') }}</td>    
                                 <td>{{ $value->total_durood() }}</td>
