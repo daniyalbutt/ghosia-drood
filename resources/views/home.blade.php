@@ -107,7 +107,7 @@
                             @foreach($users as $key => $value)
                             <tr>
                                 <td>{{ $value->id_number }}</td>
-                                <td>{{ $value->name }}</td>
+                                <td>{{ $value->name }} <br> {{ $value->phone }}</td>
                                 <td>{{ date('F') }}</td>    
                                 <td>{{ $value->total_durood() }}</td>
                                 <td>
