@@ -28,7 +28,7 @@ class AuthController extends Controller
                 'country' => 'required',
                 'id_card' => 'required',
                 'phone' => 'required',
-                'whatsapp' => 'required',
+                // 'whatsapp' => 'required',
                 'mureed' => 'required',
                 // 'email' => 'required|email|unique:users,email',
                 // 'password' => 'required|confirmed',
