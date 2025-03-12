@@ -107,7 +107,16 @@
                             @foreach($users as $key => $value)
                             <tr>
                                 <td>{{ $value->id_number }}</td>
-                                <td>{{ $value->name }} <br> {{ $value->phone }}</td>
+                                <td>
+                                    <div class="d-flex">
+                                        @if($value->image != null)
+                                        <a href="{{ asset($value->image) }}" target="_blank"><img src="{{ asset($value->image) }}" style="height: 65px;margin-right: 15px;"></a>
+                                        @else
+                                        <img src="{{ asset('images/user.jpg') }}" style="height: 65px;margin-right: 15px;">
+                                        @endif
+                                        <p style="width: 150px;text-wrap: auto;"><strong>{{ $value->name }}</strong><span style="display: block;text-decoration: underline;">{{ $value->profile != null ? $value->profile->address : '' }}</span>
+                                    </div>
+                                </td>
                                 <td>{{ date('F') }}</td>    
                                 <td>{{ $value->total_durood() }}</td>
                                 <td>

@@ -9,6 +9,8 @@ use App\Models\Profile;
 use App\Models\Attendance;
 use Hash;
 use Carbon\Carbon;
+use Redirect;
+use Intervention\Image\Laravel\Facades\Image;
 
 class UserController extends Controller
 {
@@ -33,10 +35,11 @@ class UserController extends Controller
             'name' => 'required',
             // 'email' => 'required|email|unique:users,email',
             'password' => 'required',
-            'phone' => 'required',
+            'phone' => 'required|unique:users,phone',
             'country' => 'required',
             'dob' => 'required',
             'address' => 'required',
+            'id_card' => 'required|unique:profiles,id_card',
         ]);
 
         $data = new User();
@@ -46,6 +49,21 @@ class UserController extends Controller
         $data->password = Hash::make($request->password);
         $data->phone = $request->phone;
         $data->status = 0;
+        if ($request->hasFile('image')) {
+            $this->validate($request, [
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            ]);
+            
+            $image = $request->file('image');
+            $store_path = "upload/users/images";
+            $name = md5(uniqid(rand(), true)) . str_replace(' ', '-', $image->getClientOriginalName());
+            $destinationPathThumbnail = public_path('upload/users/images');
+            $img = Image::read($image->path());
+            $img->scale(200, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPathThumbnail.'/'.$name);
+            $data->image = $store_path . '/' . $name;
+        }
         $data->save();
 
         $profile = new Profile();
@@ -79,11 +97,18 @@ class UserController extends Controller
             'member_type' => 'required',
             'name' => 'required',
             // 'email' => 'required|email|unique:users,email,'.$id,
-            'phone' => 'required',
+            'phone' => 'required|unique:users,phone,'.$id,
             'country' => 'required',
             'dob' => 'required',
             'address' => 'required',
         ]);
+        
+        $data_count = Profile::where('id_card', $request->id_card)->where('user_id', '!=', $id)->count();
+        if($data_count != 0){
+            return Redirect::back()->withErrors(['msg' => 'ID Card has already Taken']);
+        }
+        
+        
         $data = User::find($id);
         $data->name = $request->name;
         $data->id_number = $request->id_number;
@@ -93,6 +118,21 @@ class UserController extends Controller
         }
         $data->status = $request->status;
         $data->phone = $request->phone;
+        if ($request->hasFile('image')) {
+            $this->validate($request, [
+                'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg',
+            ]);
+            
+            $image = $request->file('image');
+            $store_path = "upload/users/images";
+            $name = md5(uniqid(rand(), true)) . str_replace(' ', '-', $image->getClientOriginalName());
+            $destinationPathThumbnail = public_path('upload/users/images');
+            $img = Image::read($image->path());
+            $img->scale(200, null, function ($constraint) {
+                $constraint->aspectRatio();
+            })->save($destinationPathThumbnail.'/'.$name);
+            $data->image = $store_path . '/' . $name;
+        }
         $data->save();
 
         $profile = Profile::where('user_id', $id)->first();
@@ -177,6 +217,32 @@ class UserController extends Controller
         $data->user_id = $request->user_id;
         $data->save();
         return redirect()->back()->with('success', 'Check in Successfully');   
+    }
+    
+    public function trashUser($id){
+        $profile = Profile::where('user_id', $id)->delete();
+        $user = User::find($id)->delete();
+        return redirect()->back()->with('success', 'User Deleted Successfully');
+    }
+    
+    public function trashDurood($id){
+        $durood = Durood::find($id)->delete();
+        return redirect()->back()->with('success', 'Durood Deleted Successfully');
+    }
+    
+    public function storeDurood(Request $request){
+        $durood = new Durood();
+        $durood->durood = $request->durood;
+        $durood->user_id = $request->user_id;
+        $durood->save();
+        return redirect()->back()->with('success', 'Durood Added Successfully');
+    }
+    
+    public function updateDurood(Request $request){
+        $durood = Durood::find($request->durood_id);
+        $durood->durood = $request->durood;
+        $durood->save();
+        return redirect()->back()->with('success', 'Durood Updated Successfully');
     }
  
 }

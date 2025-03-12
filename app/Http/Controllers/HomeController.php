@@ -22,7 +22,7 @@ class HomeController extends Controller
         $current_month = \Carbon\Carbon::now()->format('F');
         $total_user = DB::table('users')->where('status', 0)->where('is_admin', 0)->count();
         $total_book = DB::table('books')->where('status', 0)->count();
-        $data = Durood::orderBy('updated_at', 'desc')->limit(20)->get();
+        $data = Durood::orderBy('updated_at', 'desc')->limit(50)->get();
 
         $users = User::orderBy('id', 'desc')->where('is_admin', 0)->get();
         return view('home', compact('total_durood', 'total_user', 'total_book', 'data', 'current_month', 'users'));

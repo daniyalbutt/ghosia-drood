@@ -1,13 +1,13 @@
 <?php return array (
   'facade/ignition' => 
   array (
-    'providers' => 
-    array (
-      0 => 'Facade\\Ignition\\IgnitionServiceProvider',
-    ),
     'aliases' => 
     array (
       'Flare' => 'Facade\\Ignition\\Facades\\Flare',
+    ),
+    'providers' => 
+    array (
+      0 => 'Facade\\Ignition\\IgnitionServiceProvider',
     ),
   ),
   'fruitcake/laravel-cors' => 
@@ -15,6 +15,17 @@
     'providers' => 
     array (
       0 => 'Fruitcake\\Cors\\CorsServiceProvider',
+    ),
+  ),
+  'intervention/image-laravel' => 
+  array (
+    'aliases' => 
+    array (
+      'Image' => 'Intervention\\Image\\Laravel\\Facades\\Image',
+    ),
+    'providers' => 
+    array (
+      0 => 'Intervention\\Image\\Laravel\\ServiceProvider',
     ),
   ),
   'laravel/passport' => 

@@ -22,6 +22,11 @@
 <div class="row">
     <div class="col-xl-4">
         <div class="card">
+            @if ($message = Session::get('success'))
+            <div class="alert alert-success">
+                <p class="mb-0">{{ $message }}</p>
+            </div>
+            @endif
             <div class="card-body">
                 <div class="hstack gap-2 mb-2">
                     <button class="btn btn-soft-primary w-100">Total Durood: {{ number_format($data->durood_sum(), 0) }}</button>
@@ -107,6 +112,11 @@
         <div class="card">
             <div class="card-body border-bottom">
                 <div class="d-flex">
+                    @if($data->image != null)
+                    <img src="{{ asset($data->image) }}" style="height: 50px">
+                    @else
+                    <img src="{{ asset('images/user.jpg') }}" style="height: 50px">
+                    @endif
                     <div class="flex-grow-1 ms-3">
                         <h5 class="fw-semibold">{{ $data->name }}</h5>
                         <ul class="list-unstyled hstack gap-2 mb-0">
@@ -136,6 +146,19 @@
                         </div>
                     </div>
                 </form>
+                <form method="post" action="{{ route('durood.store') }}">
+                    @csrf
+                    <input type="hidden" name="user_id" value="{{ $data->id }}">
+                    <div class="input-group mb-3">
+                        <input type="number" name="durood" class="form-control" placeholder="Durood" required>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary btn-loader" type="submit">
+                                <img src="{{ asset('images/loader.gif') }}" alt="">
+                                Add Durood
+                            </button>
+                        </div>
+                    </div>
+                </form>
                 <div class="table-responsive">
                     <table class="table align-middle table-nowrap mb-0">
                         <thead class="table-light">
@@ -143,6 +166,7 @@
                                 <th class="align-middle">Month</th>
                                 <th class="align-middle">Date</th>
                                 <th class="align-middle">Total</th>
+                                <th class="align-middle">Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -151,6 +175,15 @@
                                 <td>{{ date('F', strtotime($value->updated_at)) }}</td>
                                 <td>{{ date('d M, Y - g:i:s A', strtotime($value->updated_at)) }}</td>
                                 <td>{{ $value->durood }}</td>
+                                <td>
+                                    <div class="d-flex gap-1">
+                                        <a class="btn btn-warning btn-sm content-icon" onclick="openModel({{$value->id}}, {{ $value->durood }})" href="javascript:;"><i class="fa fa-edit"></i></a>
+                                        <form method="post" action="{{ route('durood.trash', $value->id) }}">
+                                            @csrf
+                                            <button class="btn btn-primary btn-sm content-icon"><i class="fa fa-trash"></i></button>
+                                        </form>
+                                    </div>
+                                </td>
                             </tr>
                             @endforeach
                         </tbody>
@@ -162,4 +195,40 @@
     </div><!--end col-->
 </div>
 
+<div class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-hidden="true" id="largeModal">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Durood</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form method="post" action="{{ route('durood.update') }}">
+                    @csrf
+                    <input type="hidden" name="durood_id" class="durood_id" value="{{ $data->id }}">
+                    <div class="input-group mb-3">
+                        <input type="number" name="durood" class="form-control durood" placeholder="Durood" required>
+                        <div class="input-group-append">
+                            <button class="btn btn-primary btn-loader" type="submit">
+                                <img src="{{ asset('images/loader.gif') }}" alt="">
+                                Update Durood
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
 @endsection
+
+@push('scripts')
+<script>
+    function openModel(a, durood){
+        $('#largeModal').find('.durood_id').val(a);
+        $('#largeModal').find('.durood').val(durood);
+        $('#largeModal').modal('show');
+    }
+</script>
+@endpush

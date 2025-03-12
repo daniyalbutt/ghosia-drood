@@ -43,14 +43,20 @@
                     <div class="row mb-1">
                         <div class="col-md-4">
                             <div class="mb-3">
+                                <label for="formrow-id-image-input" class="form-label">Image</label>
+                                <input name="image" type="file" class="form-control" id="formrow-id-image-input">
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="mb-3">
                                 <label for="formrow-id-reference-input" class="form-label">Reference</label>
-                                <input name="reference" type="text" class="form-control" id="formrow-id-reference-input">
+                                <input name="reference" type="text" class="form-control" id="formrow-id-reference-input" value="{{ old('reference') }}">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-id-number-input" class="form-label">ID# <strong>*</strong></label>
-                                <input name="id_number" type="text" class="form-control" id="formrow-id-number-input" required>
+                                <input name="id_number" type="text" class="form-control" id="formrow-id-number-input" value="{{ old('id_number') }}" required>
                             </div>
                         </div>
                         <div class="col-md-4">
@@ -58,84 +64,84 @@
                                 <label for="formrow-member_type-input" class="form-label">Member Type <strong>*</strong></label>
                                 <select name="member_type" class="form-control" required>
                                     <option value="">Select Member Type</option>
-                                    <option value="Wide">Wide</option>
-                                    <option value="Domestic">Domestic</option>
+                                    <option value="Wide" {{ old('member_type') == 'Wide' ? 'selected' : '' }}>Wide</option>
+                                    <option value="Domestic" {{ old('member_type') == 'Domestic' ? 'selected' : '' }}>Domestic</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-name-input" class="form-label">Name <strong>*</strong></label>
-                                <input name="name" type="text" class="form-control" id="formrow-name-input" required>
+                                <input name="name" type="text" class="form-control" id="formrow-name-input" value="{{ old('name') }}" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-father-name-input" class="form-label">Father Name <strong>*</strong></label>
-                                <input name="father_name" type="text" class="form-control" id="formrow-father-name-input" required>
+                                <input name="father_name" type="text" class="form-control" id="formrow-father-name-input" value="{{ old('father_name') }}" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-dob-input" class="form-label">Date Of Birth <strong>*</strong></label>
-                                <input name="dob" type="date" class="form-control" id="formrow-dob-input" required>
+                                <input name="dob" type="date" class="form-control" id="formrow-dob-input" value="{{ old('dob') }}" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-address-input" class="form-label">Address <strong>*</strong></label>
-                                <input name="address" type="text" class="form-control" id="formrow-address-input" required>
+                                <input name="address" type="text" class="form-control" id="formrow-address-input" value="{{ old('address') }}" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-city-input" class="form-label">City <strong>*</strong></label>
-                                <input name="city" type="text" class="form-control" id="formrow-city-input" required>
+                                <input name="city" type="text" class="form-control" id="formrow-city-input" value="{{ old('city') }}" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-country-input" class="form-label">Country <strong>*</strong></label>
-                                <input name="country" type="text" class="form-control" id="formrow-country-input" required>
+                                <input name="country" type="text" class="form-control" id="formrow-country-input" value="{{ old('country') }}" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-id_card-input" class="form-label">ID Card# <strong>*</strong></label>
-                                <input name="id_card" type="text" class="form-control" id="formrow-id_card-input" required>
+                                <input name="id_card" type="text" class="form-control" id="formrow-id_card-input" value="{{ old('id_card') }}" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-phone-input" class="form-label">Cell# <strong>*</strong></label>
-                                <input name="phone" type="text" class="form-control" id="formrow-phone-input" required>
+                                <input name="phone" type="text" class="form-control" id="formrow-phone-input" value="{{ old('phone') }}" required>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-whatsapp-input" class="form-label">Whatsapp#</label>
-                                <input name="whatsapp" type="text" class="form-control" id="formrow-whatsapp-input">
+                                <input name="whatsapp" type="text" class="form-control" id="formrow-whatsapp-input" value="{{ old('whatsapp') }}">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-mureed-input" class="form-label">Mureed <strong>*</strong></label>
                                 <select name="mureed" class="form-control" required>
-                                    <option value="0">NO</option>
-                                    <option value="1">YES</option>
+                                    <option value="0" {{ old('mureed') == 0 ? 'selected' : '' }}>NO</option>
+                                    <option value="1" {{ old('mureed') == 1 ? 'selected' : '' }}>YES</option>
                                 </select>
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-silsila-input" class="form-label">Silsila</label>
-                                <input name="silsila" type="text" class="form-control" id="formrow-silsila-input">
+                                <input name="silsila" type="text" class="form-control" id="formrow-silsila-input" value="{{ old('silsila') }}">
                             </div>
                         </div>
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-peer_sb_name-input" class="form-label">Peer SB Name</label>
-                                <input name="peer_sb_name" type="text" class="form-control" id="formrow-peer_sb_name-input">
+                                <input name="peer_sb_name" type="text" class="form-control" id="formrow-peer_sb_name-input" value="{{ old('peer_sb_name') }}">
                             </div>
                         </div>
                         <!-- <div class="col-md-4">
@@ -153,7 +159,7 @@
                         <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-password-input" class="form-label">Password <strong>*</strong></label>
-                                <input name="password" type="text" class="form-control" id="formrow-password-input" required>
+                                <input name="password" type="text" class="form-control" id="formrow-password-input" value="{{ old('password') }}" required>
                             </div>
                         </div>
                     </div>

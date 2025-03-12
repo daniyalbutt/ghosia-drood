@@ -43,6 +43,19 @@
                     @method('PUT')
                     <div class="row mb-1">
                         <div class="col-md-4">
+                            <div class="d-flex">
+                                @if($data->image != null)
+                                <img src="{{ asset($data->image) }}" style="height: 65px;margin-right: 15px;">
+                                @else
+                                <img src="{{ asset('images/user.jpg') }}" style="height: 65px;margin-right: 15px;">
+                                @endif
+                                <div class="mb-3">
+                                    <label for="formrow-id-image-input" class="form-label">Image</label>
+                                    <input name="image" type="file" class="form-control" id="formrow-id-image-input">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
                             <div class="mb-3">
                                 <label for="formrow-id-reference-input" class="form-label">Reference</label>
                                 <input name="reference" type="text" class="form-control" id="formrow-id-reference-input" value="{{ old('reference', $data->profile != null ? $data->profile->reference : '') }}">
@@ -59,8 +72,8 @@
                                 <label for="formrow-member_type-input" class="form-label">Member Type <strong>*</strong></label>
                                 <select name="member_type" class="form-control" required>
                                     <option value="">Select Member Type</option>
-                                    <option value="Wide" {{ old('member_type', $data->profile != null ? $data->profile->member_type == 'Wide' ? 'selected' : '' : '' ) }}>Wide</option>
-                                    <option value="Domestic" {{ old('member_type', $data->profile != null ? $data->profile->member_type == 'Domestic' ? 'selected' : '' : '' ) }}>Domestic</option>
+                                    <option value="Wide" {{ $data->profile != null ? $data->profile->member_type == 'Wide' ? 'selected' : '' : '' }}>Wide</option>
+                                    <option value="Domestic" {{ $data->profile != null ? $data->profile->member_type == 'Domestic' ? 'selected' : '' : '' }}>Domestic</option>
                                 </select>
                             </div>
                         </div>
