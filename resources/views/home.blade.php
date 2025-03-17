@@ -120,9 +120,9 @@
                                 <td>{{ date('F') }}</td>    
                                 <td>{{ $value->total_durood() }}</td>
                                 <td>
-                                    <a target="_blank" href="{{ route('attendance.index', ['id' => $value->id, 'name' => str_replace(' ', '-', strtolower($value->name))]) }}" class="btn btn-info btn-sm"><i class="fa fa-user-check"></i></a>
+                                    <a target="_blank" href="{{ route('attendance.index', ['id' => $value->id, 'name' => str_replace(' ', '-', strtolower($value->name))]) }}" class="btn btn-info btn-sm mt-1 mb-1"><i class="fa fa-user-check"></i></a>
                                     @foreach($value->attendance as $key => $value)
-                                    <button class="btn btn-success btn-sm">{{ $value->time_date }}</button>
+                                    <button class="btn btn-success btn-sm mt-1 mb-1">{{ $value->time_date }}</button><br>
                                     @endforeach
                                 </td>
                             </tr>
